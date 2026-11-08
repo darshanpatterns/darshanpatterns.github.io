@@ -42,8 +42,8 @@ footer{text-align:center;padding:25px;color:#888;border-top:1px solid var(--line
 <footer>© <span id="year"></span> DARSHAN PATTERNS · Orders directly via WhatsApp</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL="PASTE_SUPABASE_PROJECT_URL";
-const SUPABASE_ANON_KEY="PASTE_SUPABASE_ANON_KEY";
+const SUPABASE_URL="https://syqrrwlwjphisjbexmxk.supabase.co";
+const SUPABASE_ANON_KEY="sb_publishable_PwSHKBsIBTVE3BBJQfq8dw_3zE65Z1e";
 const ADMIN_EMAIL="maisuriadarshan2@gmail.com";
 const WA_NUMBER="917862899424";
 let db=null,products=[],session=null;
@@ -54,7 +54,7 @@ const demo=[
 {id:"sample-4",name:"Geometric Rhythm",category:"Geometric",price:399,description:"Sample preview — replace with your own design.",image:"https://images.unsplash.com/photo-1550859514-055d5f8e4c0b?w=900"}
 ];
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function init(){document.getElementById("year").textContent=new Date().getFullYear();if(SUPABASE_URL.startsWith("https://")&&SUPABASE_ANON_KEY.startsWith("ey")){db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);loadProducts()}else{products=demo;render();document.getElementById("adminStatus").textContent="Admin setup is not connected yet. Complete the Supabase setup steps in README before signing in."}}
+function init(){document.getElementById("year").textContent=new Date().getFullYear();if(SUPABASE_URL.startsWith("https://")&&SUPABASE_ANON_KEY.startsWith("sb_publishable_")){db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);loadProducts()}else{products=demo;render();document.getElementById("adminStatus").textContent="Admin setup is not connected yet. Complete the Supabase setup steps in README before signing in."}}
 async function loadProducts(){let {data,error}=await db.from("products").select("*").eq("published",true).order("created_at",{ascending:false});if(error){console.error(error);products=demo}else products=data.map(p=>({...p,image:p.image_url}));render()}
 function render(){let q=document.getElementById("search").value.toLowerCase(),c=document.getElementById("category").value,s=document.getElementById("sort").value;let a=products.filter(p=>(p.name+" "+p.category).toLowerCase().includes(q)&&(!c||p.category===c));if(s==="low")a.sort((x,y)=>x.price-y.price);if(s==="high")a.sort((x,y)=>y.price-x.price);if(s==="az")a.sort((x,y)=>x.name.localeCompare(y.name));if(s==="new")a.reverse();document.getElementById("gallery").innerHTML=a.map(p=>`<article class="card" onclick="openProduct('${esc(p.id)}')"><div class="thumb"><img src="${esc(p.image)}" loading="lazy"><div class="wm">DARSHAN PATTERNS</div></div><div class="info"><strong>${esc(p.name)}</strong><div class="meta"><span>${esc(p.category)}</span><span class="price">₹${Number(p.price).toLocaleString("en-IN")}</span></div></div></article>`).join("")||"<p>No designs found yet.</p>";renderAdmin()}
 function openProduct(id){let p=products.find(x=>String(x.id)===String(id));if(!p)return;document.getElementById("mimg").src=p.image;document.getElementById("mtitle").textContent=p.name;document.getElementById("mprice").textContent="₹"+Number(p.price).toLocaleString("en-IN");document.getElementById("mdesc").textContent=p.description||"";let msg=`Hello Darshan Patterns, I am interested in this design.\\nDesign: ${p.name}\\nDesign ID: ${p.id}\\nPrice: ₹${p.price}\\nPlease share purchase details.`;document.getElementById("waLink").href="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(msg);document.getElementById("modal").classList.add("open")}
