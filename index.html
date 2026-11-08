@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DARSHAN PATTERNS | Premium Textile Designs</title>
+<meta name="description" content="Explore premium digital textile patterns by Darshan Patterns. Contact us directly on WhatsApp to purchase.">
+<style>
+:root{--bg:#090909;--panel:#151515;--gold:#c9a45c;--muted:#aaa;--line:#292929}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f5f1e9;font-family:Arial,sans-serif}
+header{position:sticky;top:0;background:#090909ef;backdrop-filter:blur(12px);z-index:4;border-bottom:1px solid var(--line)}
+.nav{max-width:1600px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between}
+.brand{font:22px Georgia,serif;letter-spacing:3px;color:var(--gold)}.brand small{display:block;font:9px Arial;letter-spacing:4px;color:#ddd;margin-top:5px}
+button,.btn{background:var(--gold);color:#111;border:0;padding:11px 16px;font-weight:bold;cursor:pointer;border-radius:2px}
+.hero{max-width:1600px;margin:auto;padding:42px 22px 22px}.eyebrow{font-size:11px;letter-spacing:3px;color:var(--gold)}
+h1{font:clamp(34px,4vw,58px) Georgia,serif;font-weight:400;margin:13px 0}.hero p{color:#bbb;line-height:1.7;max-width:690px}
+.filters{max-width:1600px;margin:auto;padding:0 22px 20px;display:flex;gap:10px;flex-wrap:wrap}
+input,select{background:#171717;border:1px solid #393939;color:white;padding:12px;min-width:0;border-radius:2px}
+#search{flex:1;min-width:210px}.filters select{min-width:155px}
+.gallery{max-width:1600px;margin:auto;padding:0 22px 55px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:11px}
+.card{background:#111;border:1px solid #242424;cursor:pointer;min-width:0}.card:hover{border-color:var(--gold)}
+.thumb{aspect-ratio:1;position:relative;background:#222;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.wm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#ffffffa0;text-shadow:0 1px 5px #000;letter-spacing:2px;font-size:12px;font-weight:bold;transform:rotate(-28deg);pointer-events:none}
+.info{padding:9px}.info strong{font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{display:flex;justify-content:space-between;color:#aaa;font-size:10px;margin-top:7px}.price{color:var(--gold)}
+footer{text-align:center;padding:25px;color:#888;border-top:1px solid var(--line);font-size:12px}
+.modal{display:none;position:fixed;inset:0;background:#000d;z-index:8;align-items:center;justify-content:center;padding:15px}.modal.open{display:flex}.modalbox{position:relative;max-width:900px;width:100%;background:#151515;display:grid;grid-template-columns:1.1fr 1fr;border:1px solid #444}.modalimg{position:relative;background:#222}.modalimg img{width:100%;max-height:78vh;object-fit:contain;display:block}.details{padding:28px}.details h2{font:30px Georgia,serif}.details p{color:#aaa;line-height:1.6}.close{position:absolute;right:8px;top:8px;background:#222;color:white}.wa{display:inline-block;background:var(--gold);color:#111;text-decoration:none;padding:14px 17px;font-weight:bold;margin-top:12px}
+#admin{max-width:900px;margin:30px auto;padding:22px;background:var(--panel);border:1px solid var(--line);display:none}#admin.show{display:block}#admin h2{color:var(--gold);font:27px Georgia,serif}.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form input,.form select{width:100%}.wide{grid-column:1/-1}.hint{font-size:12px;color:#999;line-height:1.5}.adminrow{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.adminrow button.secondary{background:#333;color:white}
+@media(max-width:1200px){.gallery{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}}
+@media(max-width:560px){.gallery{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:0 8px 35px}.hero{padding:27px 13px 18px}.filters{padding:0 8px 14px}.nav{padding:13px}.brand{font-size:17px}.info{padding:6px}.info strong{font-size:10px}.meta{font-size:9px}.modalbox{grid-template-columns:1fr;max-height:92vh;overflow:auto}.modalimg img{max-height:43vh}.details{padding:17px}.form{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">DARSHAN PATTERNS<small>PREMIUM TEXTILE DESIGN</small></div><button onclick="toggleAdmin()">ADMIN LOGIN</button></div></header>
+<section class="hero"><div class="eyebrow">DIGITAL TEXTILE DESIGN ATELIER · INDIA</div><h1>Patterns that make a statement.</h1><p>Explore premium digital textile and fabric print designs. Preview your favourite pattern and contact us directly on WhatsApp for availability, pricing and purchase.</p></section>
+<div class="filters"><input id="search" placeholder="Search designs..." oninput="render()"><select id="category" onchange="render()"><option value="">All categories</option><option>Floral</option><option>Abstract</option><option>Geometric</option><option>Traditional</option><option>Nature</option><option>Kids</option><option>Seamless</option><option>Other</option></select><select id="sort" onchange="render()"><option value="new">Newest first</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="az">Name: A–Z</option></select></div>
+<main id="gallery" class="gallery"></main>
+<section id="admin"><h2>Admin dashboard</h2><p id="adminStatus" class="hint">Sign in with the admin account configured in Supabase. Preview JPG/PNG/WebP only; never upload original TIFF files.</p>
+<div id="loginBox"><div class="form"><input id="email" type="email" placeholder="Admin email"><input id="password" type="password" placeholder="Password"></div><div class="adminrow"><button onclick="login()">Sign in</button></div></div>
+<div id="manageBox" style="display:none"><div class="form"><input id="pname" placeholder="Design name"><select id="pcat"><option>Floral</option><option>Abstract</option><option>Geometric</option><option>Traditional</option><option>Nature</option><option>Kids</option><option>Seamless</option><option>Other</option></select><input id="pprice" type="number" min="0" placeholder="Price (₹)"><input id="pimage" type="file" accept="image/png,image/jpeg,image/webp"><input id="pdesc" class="wide" placeholder="Short description"></div><div class="adminrow"><button onclick="addProduct()">Publish preview</button><button class="secondary" onclick="logout()">Sign out</button></div><div id="adminList"></div></div>
+<p class="hint">Customer purchases are handled directly in WhatsApp. No checkout, payment gateway or TIFF download is provided on this website.</p></section>
+<div id="modal" class="modal" onclick="if(event.target.id==='modal')closeModal()"><div class="modalbox"><button class="close" onclick="closeModal()">✕</button><div class="modalimg"><img id="mimg"><div class="wm">DARSHAN PATTERNS</div></div><div class="details"><div class="eyebrow">DESIGN PREVIEW</div><h2 id="mtitle"></h2><div class="price" id="mprice"></div><p id="mdesc"></p><p class="hint">Preview image only. Original TIFF file is supplied directly by the designer after purchase discussion.</p><a id="waLink" class="wa" target="_blank" rel="noopener">BUY NOW ON WHATSAPP</a></div></div></div>
+<footer>© <span id="year"></span> DARSHAN PATTERNS · Orders directly via WhatsApp</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="PASTE_SUPABASE_PROJECT_URL";
+const SUPABASE_ANON_KEY="PASTE_SUPABASE_ANON_KEY";
+const ADMIN_EMAIL="maisuriadarshan2@gmail.com";
+const WA_NUMBER="917862899424";
+let db=null,products=[],session=null;
+const demo=[
+{id:"sample-1",name:"Botanical Bloom",category:"Floral",price:499,description:"Sample preview — replace with your own design.",image:"https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=900"},
+{id:"sample-2",name:"Modern Abstract",category:"Abstract",price:599,description:"Sample preview — replace with your own design.",image:"https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=900"},
+{id:"sample-3",name:"Tropical Leaves",category:"Nature",price:499,description:"Sample preview — replace with your own design.",image:"https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=900"},
+{id:"sample-4",name:"Geometric Rhythm",category:"Geometric",price:399,description:"Sample preview — replace with your own design.",image:"https://images.unsplash.com/photo-1550859514-055d5f8e4c0b?w=900"}
+];
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function init(){document.getElementById("year").textContent=new Date().getFullYear();if(SUPABASE_URL.startsWith("https://")&&SUPABASE_ANON_KEY.startsWith("ey")){db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);loadProducts()}else{products=demo;render();document.getElementById("adminStatus").textContent="Admin setup is not connected yet. Complete the Supabase setup steps in README before signing in."}}
+async function loadProducts(){let {data,error}=await db.from("products").select("*").eq("published",true).order("created_at",{ascending:false});if(error){console.error(error);products=demo}else products=data.map(p=>({...p,image:p.image_url}));render()}
+function render(){let q=document.getElementById("search").value.toLowerCase(),c=document.getElementById("category").value,s=document.getElementById("sort").value;let a=products.filter(p=>(p.name+" "+p.category).toLowerCase().includes(q)&&(!c||p.category===c));if(s==="low")a.sort((x,y)=>x.price-y.price);if(s==="high")a.sort((x,y)=>y.price-x.price);if(s==="az")a.sort((x,y)=>x.name.localeCompare(y.name));if(s==="new")a.reverse();document.getElementById("gallery").innerHTML=a.map(p=>`<article class="card" onclick="openProduct('${esc(p.id)}')"><div class="thumb"><img src="${esc(p.image)}" loading="lazy"><div class="wm">DARSHAN PATTERNS</div></div><div class="info"><strong>${esc(p.name)}</strong><div class="meta"><span>${esc(p.category)}</span><span class="price">₹${Number(p.price).toLocaleString("en-IN")}</span></div></div></article>`).join("")||"<p>No designs found yet.</p>";renderAdmin()}
+function openProduct(id){let p=products.find(x=>String(x.id)===String(id));if(!p)return;document.getElementById("mimg").src=p.image;document.getElementById("mtitle").textContent=p.name;document.getElementById("mprice").textContent="₹"+Number(p.price).toLocaleString("en-IN");document.getElementById("mdesc").textContent=p.description||"";let msg=`Hello Darshan Patterns, I am interested in this design.\\nDesign: ${p.name}\\nDesign ID: ${p.id}\\nPrice: ₹${p.price}\\nPlease share purchase details.`;document.getElementById("waLink").href="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(msg);document.getElementById("modal").classList.add("open")}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+function toggleAdmin(){document.getElementById("admin").classList.toggle("show");document.getElementById("admin").scrollIntoView({behavior:"smooth"})}
+async function login(){if(!db){alert("Admin setup not connected. Follow README setup first.");return}let email=document.getElementById("email").value.trim(),password=document.getElementById("password").value; if(email.toLowerCase()!==ADMIN_EMAIL.toLowerCase()){alert("This email is not the configured admin email.");return}let {data,error}=await db.auth.signInWithPassword({email,password});if(error){alert(error.message);return}session=data.session;document.getElementById("loginBox").style.display="none";document.getElementById("manageBox").style.display="block";await loadAdminProducts()}
+async function logout(){if(db)await db.auth.signOut();session=null;document.getElementById("loginBox").style.display="block";document.getElementById("manageBox").style.display="none"}
+async function addProduct(){if(!db||!session){alert("Please sign in first.");return}let name=document.getElementById("pname").value.trim(),price=Number(document.getElementById("pprice").value),file=document.getElementById("pimage").files[0];if(!name||!file||!price){alert("Enter name, price and preview image.");return}if(!["image/jpeg","image/png","image/webp"].includes(file.type)){alert("Only JPG, PNG or WebP preview images are allowed.");return}let path=Date.now()+"-"+file.name.replace(/[^a-zA-Z0-9._-]/g,"_");let up=await db.storage.from("previews").upload(path,file,{upsert:false});if(up.error){alert(up.error.message);return}let url=db.storage.from("previews").getPublicUrl(path).data.publicUrl;let row={name,category:document.getElementById("pcat").value,price,description:document.getElementById("pdesc").value,image_url:url,storage_path:path,published:true};let ins=await db.from("products").insert(row);if(ins.error){alert(ins.error.message);return}alert("Design published.");await loadProducts();await loadAdminProducts()}
+async function loadAdminProducts(){let {data,error}=await db.from("products").select("*").order("created_at",{ascending:false});if(error){alert(error.message);return}document.getElementById("adminList").innerHTML="<h3>Your designs</h3>"+data.map(p=>`<div class="adminrow"><span>${esc(p.name)} · ₹${p.price}</span><button class="secondary" onclick="removeProduct('${p.id}','${esc(p.storage_path)}')">Delete</button></div>`).join("")}
+async function renderAdmin(){if(session)loadAdminProducts()}
+async function removeProduct(id,path){if(!confirm("Delete this preview listing?"))return;let del=await db.from("products").delete().eq("id",id);if(del.error){alert(del.error.message);return}if(path)await db.storage.from("previews").remove([path]);await loadProducts();await loadAdminProducts()}
+init();
+</script>
+</body></html>
